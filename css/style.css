@@ -1,5 +1,5 @@
 @charset 'utf-8';
-*{padding:0;margin:0;}
+*{padding:0; margin:0;}
 a{
     color:inherit; 
     text-decoration:none;
@@ -61,7 +61,8 @@ header ul:after{
     clear:both; 
     display:block;
     }
-.slider a{
+.slider > a{
+    /* 바로밑에있는 자손을 뜻함 : > */
     display:block;
     /* display:block을 해줘야 inline의 속성(해당글자의 배경만 나타지는 것)이 아닌
      block의 속성(그 글자의 줄 전부 나타나지는 것)으로 변환된다 */
@@ -70,10 +71,42 @@ header ul:after{
     background-image:url(../images/main_visual_01.jpg);
     /* background-image:url(../images/main_visual_2.png);
     background-image:url(../images/main_visual_3.jpg); */
-    background-position: center;
+    background-position: center; 
+    /* 그림의 시작이 왼쪽부터가 아니라 중간이 나올 수 있도록 배열 */
     background-size:cover;
     /* size가 contain이 아니라 cover */
+    /* cover : 내가 지정한 width, height값에 맞게 사진을 다 채워라,그림이 잘려도 다 채움
+    contain : 모든 사진을 다 보여준다 */
     background-repeat:no-repeat;
+}
+.pager a{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background-color:rgba(0,0,0,0.4);
+    /* rgb : 불투명색깔(000:검은색) / rgba : 약간투명 */
+    text-indent: -9999px;
+    /* 글자를 날림 - alt같은 느낌 */
+    float: left;
+    margin-left:14px;
+}
+.pager a:first-child{
+    margin-left:0px;
+}
+.pager:after{
+    content:"";
+    display:block;
+    clear:both;
+}
+.pager{
+    position: absolute;
+    bottom:22px;
+    left:calc(50% - 63px);
+    /* "-"를 사용할때 띄어쓰기를 해줘야한다 */
+}
+/* 색깔하나 바꿔놓음--------------------------------------------------------------------------------- */
+.slider{
+    position: relative;
 }
 .container{
     margin-top:64px;
@@ -91,3 +124,54 @@ header ul:after{
 .item:last-child{
     margin-right:0;
 }
+/* 여기부터 스토리 */
+.story{
+    margin-top:20px;
+}
+h3{
+    margin-bottom: 40px;
+}
+.box{
+    float: left;
+    width:312px;
+    margin-right: 22px;
+    margin-bottom: 15px;;
+}
+.box:last-child{
+    margin-right: 0px;
+}
+.story:after{
+    content:"";
+    display:block;
+    clear:both;
+}
+.item{
+    margin-bottom: 22px;
+    position: relative;
+}
+.over{
+    position: absolute;
+    top:0; left:0;
+    opacity:0;
+    /* 투명도 -> opacity:0 = 아예 안보임 / opacity:1 = 다 보임*/
+    transition:all 0.8s;
+    /* 0->1로 갈때 전환되는 시간이 0.8초임 */
+}
+.item:hover .over{
+    /* 아이템에 hover를 했을때 아이템 안에있는 over클래스가 밑을 따라라 */
+    opacity:1;
+}
+.item:last-child{
+    margin-bottom: 0px;
+}
+footer{
+    background-color:#32404d;
+    text-align:center;
+    /* 전체의 범위에서 배열을 해야하니까 footer안에 넣는다 */
+}
+
+/* footer img{
+    display:block;
+    margin:0 auto;
+} */
+/* inline 일때는 text-align or display:block->margin:0 auto; */
